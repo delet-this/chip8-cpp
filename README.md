@@ -7,7 +7,7 @@ Chip-8 interpreter in C++20
 Install dependencies: `cmake gcc sdl2`
 Build:
 ```
-cmake . && make
+cmake . -DCMAKE_BUILD_TYPE=Release && make
 ```
 
 or with Nix:
