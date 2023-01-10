@@ -4,7 +4,7 @@
 Chip-8 interpreter in C++20
 
 ### Build
-Install dependencies: `cmake gcc sdl2`
+Install dependencies: `cmake gcc sdl2` \
 Build:
 ```
 cmake . -DCMAKE_BUILD_TYPE=Release && make
