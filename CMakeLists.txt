@@ -5,10 +5,34 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_EXTENSIONS FALSE)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+
+set(SOURCES main.cpp chip8.cpp)
+add_executable(chip8 ${SOURCES})
+
 # https://github.com/cpp-best-practices/cppbestpractices/blob/master/02-Use_the_Tools_Available.md#gcc%E2%80%94clang
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wnull-dereference -Wuseless-cast -Wdouble-promotion -Wformat=2 -Weffc++")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -g")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3 -s")
+target_compile_options(chip8 PUBLIC
+    -Wall -Wextra -pedantic -Wshadow
+    -Wnon-virtual-dtor
+    -Wold-style-cast
+    -Wcast-align
+    -Wunused
+    -Woverloaded-virtual
+    # -Wconversion
+    # -Wsign-conversion
+    -Wmisleading-indentation
+    -Wduplicated-cond
+    -Wduplicated-branches
+    -Wlogical-op
+    -Wnull-dereference
+    -Wuseless-cast
+    -Wdouble-promotion
+    -Wformat=2
+    # -Wlifetime
+    -Wimplicit-fallthrough
+)
+
+target_compile_options(chip8 PUBLIC "$<$<CONFIG:Debug>:-g>")
+target_compile_options(chip8 PUBLIC "$<$<CONFIG:Release>:-O3;-s>")
 
 find_program(CPPCHECK cppcheck)
 if(CPPCHECK)
@@ -24,8 +48,6 @@ endif()
 #     message(AUTHOR_WARNING "clang-tidy not found")
 # endif()
 
-set(SOURCES main.cpp chip8.cpp)
-add_executable(chip8 ${SOURCES})
 install(TARGETS chip8
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
