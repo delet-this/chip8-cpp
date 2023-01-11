@@ -9,7 +9,7 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
 set(SOURCES main.cpp chip8.cpp)
 add_executable(chip8 ${SOURCES})
 
-# https://github.com/cpp-best-practices/cppbestpractices/blob/master/02-Use_the_Tools_Available.md#gcc%E2%80%94clang
+# https://github.com/cpp-best-practices/cppbestpractices/blob/master/02-Use_the_Tools_Available.md#gcc--clang
 target_compile_options(chip8 PUBLIC
     -Wall -Wextra -pedantic -Wshadow
     -Wnon-virtual-dtor
